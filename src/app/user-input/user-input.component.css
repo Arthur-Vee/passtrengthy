@@ -1,0 +1,37 @@
+
+
+.input_wrapper{
+    max-width: 200px;
+    margin: 0 auto;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+.passwordStrength{
+    display: flex;
+    height: 5px;
+}
+.easy{
+    background-color: red;
+    height: 4px;
+    width: 33%;
+}
+.medium{
+    background-color: yellow;
+    height: 4px;
+    width: 33%;
+}
+.strong{
+    background-color: green;
+    height: 4px;
+    width: 34%;
+}
+.defaultPasswordStrengthColor{
+    background-color: gray;
+    height: 4px;
+    width: 33%;
+}
+
+
+

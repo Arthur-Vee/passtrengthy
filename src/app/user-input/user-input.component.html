@@ -1,0 +1,13 @@
+
+<form [formGroup]="passwordForm" class="input_wrapper">
+    <label for="input">Password Strenght Checker</label>
+    <input matInput type="password" formControlName="password" (input)="calculateStrenght()" >
+    
+    <!-- first approach -->
+
+    <div class="passwordStrength">
+        <div [class]="sectionOne"></div>
+        <div [class]="sectionTwo"></div>
+        <div [class]="sectionThree"></div>
+    </div>
+</form>
