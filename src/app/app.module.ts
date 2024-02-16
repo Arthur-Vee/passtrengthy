@@ -7,8 +7,7 @@ import { UserInputComponent } from './user-input/user-input.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
 
-import { MatProgressBarModule } from '@angular/material/progress-bar';
-import {MatInputModule} from '@angular/material/input';
+
 
 @NgModule({
   declarations: [
@@ -19,9 +18,8 @@ import {MatInputModule} from '@angular/material/input';
     BrowserModule,
     AppRoutingModule,
     NoopAnimationsModule,
-    MatProgressBarModule,
     ReactiveFormsModule,
-    MatInputModule
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

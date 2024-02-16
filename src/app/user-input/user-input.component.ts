@@ -1,91 +1,62 @@
-import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, ElementRef, ViewChild } from '@angular/core'
+
 
 
 @Component({
   selector: 'app-user-input',
   templateUrl: './user-input.component.html',
   styleUrls: ['./user-input.component.css']
-  
+
 })
 
 
 export class UserInputComponent {
-
-  passwordForm!:FormGroup;
-  progressBarColor:string = "warn";
-  progressBarValue!:number;
-  password!:string;
-
-  sectionOne!:string
-  sectionTwo!:string
-  sectionThree!:string
+  @ViewChild('passwordInput') passwordInput!: ElementRef
 
 
+  passwordValue!: string
+
+  sectionOne = "defaultPasswordStrengthColor"
+  sectionTwo = "defaultPasswordStrengthColor"
+  sectionThree = "defaultPasswordStrengthColor"
+
+  calculateStrenght() {
+    this.passwordValue = this.passwordInput.nativeElement.value
+    var hasLetters = false
+    var hasNumbers = false
+    var hasSymbols = false
+    var hasSpaces = false
 
 
-  constructor(private formBuilder:FormBuilder){
-      this.passwordForm = this.formBuilder.group({
-        password:["", Validators.required],
-      })
-  }
+    for (var char of this.passwordValue) {
+      hasLetters = hasLetters || /[a-zA-Z]/.test(this.passwordValue)
+      hasNumbers = hasNumbers || /[0-9]/.test(this.passwordValue);
+      hasSymbols = hasSymbols || /[^\w\s]/.test(this.passwordValue);
+      hasSpaces = hasSpaces || /\s/.test(this.passwordValue);
 
-  getProgressColor(progressBarColor:string){
-    progressBarColor = this.progressBarColor
-    return progressBarColor
-  }
-
-  calculateStrenght(){
-
-    var hasLetters = false;
-    var hasNumbers = false;
-    var hasSymbols = false;
-
-   
-    for(var char of this.passwordForm.value.password){
-      hasLetters = hasLetters || /[a-zA-Z]/.test(char)
-      hasNumbers = hasNumbers || /[0-9]/.test(char);
-      hasSymbols = hasSymbols || /[^\w\s]/.test(char);
-      
     }
-    
-    if((!hasLetters || !hasNumbers || !hasSymbols) && this.passwordForm.value.password.length < 1){
-      this.sectionOne = ""
-      this.sectionTwo = ""
-      this.sectionThree = ""
-    }
-    if(this.passwordForm.value.password.length > 0 && (this.passwordForm.value.password.length <= 7)){
+    if (this.passwordValue.length < 1 || hasSpaces) {
+      this.sectionOne = "defaultPasswordStrengthColor"
+      this.sectionTwo = "defaultPasswordStrengthColor"
+      this.sectionThree = "defaultPasswordStrengthColor"
+    } else if ((this.passwordValue.length > 0 && this.passwordValue.length < 7)) {
       this.sectionOne = "easy"
       this.sectionTwo = "easy"
       this.sectionThree = "easy"
-    }
-    if((hasLetters || hasNumbers || hasSymbols) && this.passwordForm.value.password.length > 8){ 
-      this.sectionOne = "easy"
-      this.sectionTwo = "defaultPasswordStrengthColor"
-      this.sectionThree = "defaultPasswordStrengthColor"
-      
-    }
-    if((hasLetters && hasNumbers && this.passwordForm.value.password.length >= 8)){
-      this.sectionOne = "medium"
-      this.sectionTwo = "medium"
-      this.sectionThree = "defaultPasswordStrengthColor"
-    }
-    if((hasLetters && hasSymbols) && this.passwordForm.value.password.length >= 8){
-      this.sectionOne = "medium"
-      this.sectionTwo = "medium"
-      this.sectionThree = "defaultPasswordStrengthColor"
-      
-    }
-    if((hasNumbers && hasSymbols) && this.passwordForm.value.password.length >= 8){
-      this.sectionOne = "medium"
-      this.sectionTwo = "medium"
-      this.sectionThree = "defaultPasswordStrengthColor"
-    }
-    if((hasLetters && hasNumbers && hasSymbols) && this.passwordForm.value.password.length >= 8){
+    } else if ((hasLetters && hasNumbers && hasSymbols)) {
       this.sectionOne = "strong"
       this.sectionTwo = "strong"
       this.sectionThree = "strong"
+    } else if ((hasLetters && hasSymbols || hasSymbols && hasNumbers || hasLetters && hasNumbers)) {
+      this.sectionOne = "medium"
+      this.sectionTwo = "medium"
+      this.sectionThree = "defaultPasswordStrengthColor"
+    } else if ((hasLetters || hasNumbers || hasSymbols)) {
+      this.sectionOne = "easy"
+      this.sectionTwo = "defaultPasswordStrengthColor"
+      this.sectionThree = "defaultPasswordStrengthColor"
     }
+
   }
 
 }
