@@ -1,7 +1,9 @@
+<div class="input_wrapper">
+    
 
-<form [formGroup]="passwordForm" class="input_wrapper">
+<form [formGroup]="passwordForm">
     <label for="input">Password Strenght Checker</label>
-    <input matInput type="password" formControlName="password" (input)="calculateStrenght()" >
+    <input type="password" formControlName="password" (input)="calculateStrenght()" >
     
     <!-- first approach -->
 
@@ -11,3 +13,4 @@
         <div [class]="sectionThree"></div>
     </div>
 </form>
+</div>

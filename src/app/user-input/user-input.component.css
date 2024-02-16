@@ -1,36 +1,48 @@
 
-
 .input_wrapper{
-    max-width: 200px;
+    max-width: 210px;
     margin: 0 auto;
     justify-content: center;
+    align-items: center;
     display: flex;
     flex-direction: column;
     height: 100vh;
+}
+form{
+    padding: 15px;
+    width: 200px;
+    height: 50px;
+    border-radius: 1rem;
+    background-color: rgba(205, 205, 205, 0.652);
+    box-shadow: 0px 0px 9px 3px rgba(0, 0, 0, 0.3);
+
+}
+input{
+    border: none;
+    outline: none;
+    width: 98%;
 }
 .passwordStrength{
     display: flex;
     height: 5px;
 }
+.passwordStrength div{
+    height: 4px;
+    width: 34%;
+    transition: background-color 0.3s ease-in-out;
+}
 .easy{
     background-color: red;
-    height: 4px;
-    width: 33%;
 }
 .medium{
     background-color: yellow;
-    height: 4px;
-    width: 33%;
 }
 .strong{
-    background-color: green;
-    height: 4px;
-    width: 34%;
+    background-color: rgb(0, 167, 0);
+    
 }
 .defaultPasswordStrengthColor{
-    background-color: gray;
-    height: 4px;
-    width: 33%;
+    background-color: gray;  
 }
 
 
