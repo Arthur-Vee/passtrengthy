@@ -1,12 +1,8 @@
 <div class="input_wrapper">
-
-
     <form>
-        <h2>Password Strenght Checker</h2>
-        <input placeholder=" Type here..." #passwordInput formControlName="password" (input)="calculateStrenght()">
-
-        <!-- first approach -->
-
+        <h2>Check your password strength</h2>
+        <br>
+        <input placeholder=" Type here..." #passwordInput name="password" (input)="calculateStrenght()">
         <div class="passwordStrength">
             <div [class]="sectionOne"></div>
             <div [class]="sectionTwo"></div>
